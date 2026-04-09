@@ -4,31 +4,37 @@ document.addEventListener('DOMContentLoaded', () => {
     year.textContent = new Date().getFullYear();
   }
 
-  const scrollBtn = document.getElementById('scroll-to-story');
-  const storySection = document.getElementById('story');
-  if (scrollBtn && storySection) {
-    scrollBtn.addEventListener('click', () => {
-      storySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const scrollButtons = document.querySelectorAll('[data-scroll]');
+  scrollButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-scroll');
+      const target = document.getElementById(targetId);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     });
-  }
+  });
 
-  const carousel = document.querySelector('.carousel');
-  const controls = document.querySelectorAll('.carousel-controls button');
-  if (carousel && controls.length) {
-    controls.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        if (btn.dataset.direction === 'next') {
-          const first = carousel.firstElementChild;
-          if (first) {
-            carousel.appendChild(first);
+  const sticky = document.querySelector('.sticky-cta');
+  const hero = document.getElementById('hero');
+  if (sticky && hero && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.4) {
+            sticky.dataset.visible = 'false';
+          } else {
+            sticky.dataset.visible = 'true';
           }
-        } else {
-          const last = carousel.lastElementChild;
-          if (last) {
-            carousel.insertBefore(last, carousel.firstElementChild);
-          }
-        }
-      });
+        });
+      },
+      { threshold: [0, 0.4, 1] }
+    );
+    observer.observe(hero);
+  } else if (sticky) {
+    window.addEventListener('scroll', () => {
+      const revealPoint = hero ? hero.offsetHeight / 2 : 200;
+      sticky.dataset.visible = window.scrollY > revealPoint ? 'true' : 'false';
     });
   }
 });
