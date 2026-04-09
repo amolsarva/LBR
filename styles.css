@@ -79,47 +79,17 @@ img {
 }
 
 .hero-visual {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  position: relative;
-}
-
-.state {
   border-radius: 32px;
   overflow: hidden;
-  position: relative;
-  background: #d6dadf;
-  box-shadow: 0 40px 90px rgba(10, 13, 18, 0.1);
+  background: #11151b;
+  box-shadow: 0 40px 90px rgba(10, 13, 18, 0.18);
 }
 
-.state img {
+.hero-visual img {
+  width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: saturate(0.85);
-}
-
-.state.after img {
-  filter: saturate(1.1) contrast(1.05);
-}
-
-.state figcaption {
-  position: absolute;
-  bottom: 16px;
-  left: 18px;
-  right: 18px;
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.9);
-  background: rgba(5, 8, 11, 0.48);
-  padding: 10px 14px;
-  border-radius: 12px;
-}
-
-.motion-note {
-  grid-column: 1 / -1;
-  font-size: 0.85rem;
-  color: var(--muted);
-  padding-top: 8px;
+  display: block;
 }
 
 .hero-copy {
@@ -227,27 +197,21 @@ img {
 
 .reveal-gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 18px;
 }
 
-.reveal-gallery figure,
-.ghost-frame {
+.reveal-gallery figure {
   border-radius: 28px;
-  padding: 16px;
+  overflow: hidden;
   background: #fff;
   border: 1px solid var(--line);
-  min-height: 220px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
 }
 
-.reveal-gallery figcaption,
-.image-note {
-  font-size: 0.85rem;
-  color: var(--muted);
-  margin-top: auto;
+.reveal-gallery img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
 }
 
 .mechanism {
@@ -261,14 +225,12 @@ img {
 .diagram {
   background: var(--accent-soft);
   border-radius: 32px;
-  padding: 32px;
+  padding: 24px;
 }
 
-.diagram svg {
+.diagram img {
   width: 100%;
-  height: auto;
-  font-size: 0.85rem;
-  fill: var(--muted);
+  display: block;
 }
 
 .diagram-copy ul {
@@ -301,6 +263,13 @@ img {
   background: #fff;
   border: 1px solid var(--line);
   min-height: 200px;
+}
+
+.lifestyle-grid article img {
+  border-radius: 20px;
+  margin-bottom: 16px;
+  width: 100%;
+  display: block;
 }
 
 .quote {
@@ -339,16 +308,16 @@ img {
 
 .final-visual {
   border-radius: 36px;
+  overflow: hidden;
   min-height: 320px;
-  background: linear-gradient(135deg, #030712, #14242b);
-  color: #cfd8d7;
-  padding: 32px;
-  display: flex;
-  align-items: flex-end;
+  background: #000;
 }
 
-.final-visual .image-note {
-  color: rgba(255, 255, 255, 0.8);
+.final-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .final-copy h2 {
